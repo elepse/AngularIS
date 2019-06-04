@@ -1,0 +1,8 @@
+<h2>My requests</h2>
+<ul class="requests">
+  <li [class.selected]="request === selectRequest" *ngFor="let request of requests" (click)="onSelect(request)">
+    <span class="badge">{{request.id}}</span> {{request.name}}
+  </li>
+</ul>
+
+<app-request-detail [request]="selectRequest"></app-request-detail>
