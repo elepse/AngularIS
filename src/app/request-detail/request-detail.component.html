@@ -1,5 +1,5 @@
 <div *ngIf="request">
-
+  <button (click)="goBack()">go back</button>
   <h2>{{request.name | uppercase}} Details</h2>
   <div><span>id: </span>{{request.id}}</div>
   <div>

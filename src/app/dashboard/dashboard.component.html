@@ -1,0 +1,8 @@
+<h3>Панель запросов</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let request of requests" routerLink="/detail/{{request.id}}" class="col-1-4">
+    <div class="module hero">
+      <h4>{{request.name}}</h4>
+    </div>
+  </a>
+</div>

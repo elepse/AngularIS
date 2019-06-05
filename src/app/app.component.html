@@ -3,7 +3,11 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <app-requeries-board></app-requeries-board>
+  <nav>
+    <a routerLink="/requests">Запросы</a>
+    <a routerLink="/dashboard">Панель запросов</a>
+  </nav>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
 </div>
 
-<router-outlet></router-outlet>

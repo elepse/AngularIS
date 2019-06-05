@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {Request} from '../request';
+import { Request} from '../request';
 import {RequestService} from '../request.service';
 
 @Component({
-  selector: 'app-requeries-board',
-  templateUrl: './requeries-board.component.html',
-  styleUrls: ['./requeries-board.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class RequeriesBoardComponent implements OnInit {
+export class DashboardComponent implements OnInit {
+  requests: Request[] = [];
 
   constructor(private requestService: RequestService) { }
-
-  requests: Request[];
-
-  getRequests(): void {
-    this.requestService.getRequests().subscribe(requests => this.requests = requests);
-  }
 
   ngOnInit() {
     this.getRequests();
   }
+  getRequests(): void {
+    this.requestService.getRequests().subscribe(requests => this.requests = requests);
+  }
+
 }

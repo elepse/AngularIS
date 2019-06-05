@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Request } from '../request';
+import {Component, OnInit, Input} from '@angular/core';
+import {Request} from '../request';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
+import {RequestService} from '../request.service';
 
 @Component({
   selector: 'app-request-detail',
@@ -7,11 +10,27 @@ import { Request } from '../request';
   styleUrls: ['./request-detail.component.scss']
 })
 export class RequestDetailComponent implements OnInit {
-  @Input() request: Request;
+  request: Request;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private requestService: RequestService,
+    private location: Location
+  ) {
+  }
 
   ngOnInit() {
+    this.getRequest();
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  getRequest(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.requestService.getRequest(id)
+      .subscribe(request => this.request = request);
   }
 
 }
