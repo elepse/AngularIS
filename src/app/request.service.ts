@@ -14,7 +14,7 @@ export class RequestService {
 
   private requestsUrl = 'api/requests';
 
-  private handleError<T> (operation  = 'operation ', result?: T){
+  private handleError<T>(operation  = 'operation ', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       console.log(`${operation} failed: ${error.message}`);
