@@ -1,12 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <nav>
-    <a routerLink="/requests">Запросы</a>
-    <a routerLink="/dashboard">Панель запросов</a>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/requests">Запросы</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="col col-lg-12">
   <router-outlet></router-outlet>
   <app-messages></app-messages>
 </div>

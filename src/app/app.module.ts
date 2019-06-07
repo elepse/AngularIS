@@ -10,7 +10,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule} from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './in-memory-data.service';
+import { RequestSearchComponent } from './request-search/request-search.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -18,16 +20,16 @@ import {InMemoryDataService} from './in-memory-data.service';
     RequeriesBoardComponent,
     RequestDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    RequestSearchComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    ),
+    NgbModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

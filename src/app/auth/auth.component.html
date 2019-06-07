@@ -1,0 +1,19 @@
+<div class="container">
+  <br>
+  <div class="col-lg-4 offset-lg-4" style="border: silver 1px solid; padding: 50px; border-radius: 10px; background-color: #f0f0f0">
+    <div class="text-center">
+      <h3>Вход</h3>
+      <br>
+    </div>
+    <div class="text-center">
+      <label for="login">Логин</label>
+      <input class="form-control" placeholder="@login" id="login" type="text" #login />
+      <br>
+      <label for="password">Пароль</label>
+      <input class="form-control" id="password" placeholder="****************" type="password" #password />
+      <br>
+      <button class="btn btn-primary" (click)="logIn(login.value, password.value)">Войти</button>
+    </div>
+  </div>
+</div>
+

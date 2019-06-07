@@ -23,6 +23,11 @@ export class RequestDetailComponent implements OnInit {
     this.getRequest();
   }
 
+  save(): void {
+    this.requestService.updateRequest(this.request)
+      .subscribe(() => this.goBack());
+  }
+
   goBack(): void {
     this.location.back();
   }
