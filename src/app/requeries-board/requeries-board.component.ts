@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Request} from '../request';
-import {RequestService} from '../request.service';
+import {Task} from '../task';
+import {TaskService} from '../task.service';
+import {Observable, Subject} from 'rxjs';
+import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-requeries-board',
@@ -8,31 +10,41 @@ import {RequestService} from '../request.service';
   styleUrls: ['./requeries-board.component.scss']
 })
 export class RequeriesBoardComponent implements OnInit {
-
-  constructor(private requestService: RequestService) {
+  constructor(private taskService: TaskService) {
   }
 
-  requests: Request[];
+  private searchParams = new Subject<Task>();
+  tasks$: Observable<Task[]>;
 
-  getRequests(): void {
-    this.requestService.getRequests().subscribe(requests => this.requests = requests);
-  }
+  params: Task = {
+    taskId: null,
+    tittle: null,
+    description: null,
+    createAt: null,
+    editAT: null,
+    creator: null,
+    lastEditor: null,
+    performing: null,
+    location: null,
+    theme: null,
+    status: null
+  };
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-    this.requestService.addRequest({name} as Request)
-      .subscribe(request => this.requests.push(request));
-  }
-
-  delete(request: Request): void {
-    this.requests = this.requests.filter(h => h !== request);
-    this.requestService.deleteRequest(request).subscribe();
+  tasksSearch(): void {
+    this.searchParams.next(this.params);
+    // this.taskService.searchTasks(this.params).subscribe(data => {
+    //   // this.tasks$ = data;
+    // });
+    console.log(this.tasks$);
   }
 
   ngOnInit() {
-    this.getRequests();
+    this.tasks$ = this.searchParams.pipe(
+      debounceTime(300),
+
+
+      switchMap((params: Task) => this.taskService.searchTasks(params))
+    );
+
   }
 }

@@ -4,14 +4,16 @@
   <div class="col-lg-8 offset-2 text-center" style="display: flex; flex-wrap: wrap;">
     <div class="col-lg-6 col-xs-12">
       <label>Тема:</label>
-      <input #searchByTheme type="text" class="form-control">
+      <select class="form-control" [(ngModel)]="params.theme" #searchByTheme (change)="tasksSearch()">
+        <option value="null">Все</option>
+      </select>
       <br>
       <label>Заявитель:</label>
-      <input #searchByCreator type="text" class="form-control">
+      <input #searchByCreator [(ngModel)]="params.creator" type="text" (change)="tasksSearch()" class="form-control">
       <br>
       <label>Статус:</label>
-      <select class="form-control" #searchByStatus>
-        <option value="">Все</option>
+      <select class="form-control" #searchByStatus [(ngModel)]="params.status" (change)="tasksSearch()">
+        <option value="null">Все</option>
         <option value="1">Нет выполняющего</option>
         <option value="2">Выполняется</option>
         <option value="3">Завершенна</option>
@@ -19,15 +21,15 @@
     </div>
     <div class="col-lg-6 col-xs-12">
       <label>Дата создания:</label>
-      <input #searchByDate type="text" class="form-control">
+      <input #searchByDate type="text" class="form-control" [(ngModel)]="params.createAt" (change)="tasksSearch()">
       <br>
       <label>Расположение:</label>
-      <select #searchByLocation class="form-control">
-        <option value="">Все</option>
+      <select #searchByLocation class="form-control" [(ngModel)]="params.location">
+        <option value="null">Все</option>
       </select>
       <br>
       <label>Выполняющий:</label>
-      <select #searchByCreator class="form-control">
+      <select #searchByCreator class="form-control" [(ngModel)]="params.performing">
         <option value="">Все</option>
       </select>
     </div>
@@ -39,6 +41,9 @@
     <div class="col-lg-12 text-center">
       <button class="btn-primary btn">Добавить заявку</button>
     </div>
+    <ul>
+      <li *ngFor="let task of tasks$ | async">{{task.name}}</li>
+    </ul>
   </div>
 </div>
 

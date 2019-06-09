@@ -3,7 +3,6 @@ import {Request} from './request';
 import {Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
-import {isSuccess} from 'angular-in-memory-web-api';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
