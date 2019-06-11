@@ -22,6 +22,7 @@ export class RequestSearchComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
+
   constructor(private requestService: RequestService) {
   }
 

@@ -11,10 +11,15 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 })
 export class RequeriesBoardComponent implements OnInit {
   constructor(private taskService: TaskService) {
+    this.tasksSearch();
   }
 
   private searchParams = new Subject<Task>();
-  tasks$: Observable<Task[]>;
+  tasks$: Observable<any[]>;
+  locations: any[];
+  users: any[];
+
+  statusEdit = false;
 
   params: Task = {
     taskId: null,
@@ -32,19 +37,27 @@ export class RequeriesBoardComponent implements OnInit {
 
   tasksSearch(): void {
     this.searchParams.next(this.params);
-    // this.taskService.searchTasks(this.params).subscribe(data => {
-    //   // this.tasks$ = data;
-    // });
-    console.log(this.tasks$);
+  }
+
+  getUser(): void {
+    this.taskService.getUsers().subscribe(users => this.users = users);
+  }
+
+  getLocations(): void {
+    this.taskService.getLocations().subscribe(locations => this.locations = locations);
+    console.log(this.locations);
+  }
+
+  changeStatus(): void {
+    this.statusEdit = !this.statusEdit;
   }
 
   ngOnInit() {
     this.tasks$ = this.searchParams.pipe(
       debounceTime(300),
-
-
       switchMap((params: Task) => this.taskService.searchTasks(params))
     );
-
+    this.getUser();
+    this.getLocations();
   }
 }

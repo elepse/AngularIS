@@ -9,7 +9,10 @@
       </select>
       <br>
       <label>Заявитель:</label>
-      <input #searchByCreator [(ngModel)]="params.creator" type="text" (change)="tasksSearch()" class="form-control">
+      <select #searchByCreator [(ngModel)]="params.creator" (change)="tasksSearch()" class="form-control">
+        <option value="null">Все</option>
+        <option *ngFor="let user of users" value="{{user.user_id}}">{{user.name}}</option>
+      </select>
       <br>
       <label>Статус:</label>
       <select class="form-control" #searchByStatus [(ngModel)]="params.status" (change)="tasksSearch()">
@@ -21,16 +24,18 @@
     </div>
     <div class="col-lg-6 col-xs-12">
       <label>Дата создания:</label>
-      <input #searchByDate type="text" class="form-control" [(ngModel)]="params.createAt" (change)="tasksSearch()">
+      <input #searchByDate type="date" class="form-control" [(ngModel)]="params.createAt" (change)="tasksSearch()">
       <br>
       <label>Расположение:</label>
       <select #searchByLocation class="form-control" [(ngModel)]="params.location">
         <option value="null">Все</option>
+        <option *ngFor="let location of locations" value="{{location.location_id}}">{{location.name_loc}}</option>
       </select>
       <br>
       <label>Выполняющий:</label>
       <select #searchByCreator class="form-control" [(ngModel)]="params.performing">
-        <option value="">Все</option>
+        <option value="null">Все</option>
+        <option *ngFor="let user of users" value="{{user.user_id}}">{{user.name}}</option>
       </select>
     </div>
     <div>
@@ -39,11 +44,31 @@
   <hr>
   <div class="col-lg-12">
     <div class="col-lg-12 text-center">
-      <button class="btn-primary btn">Добавить заявку</button>
+      <button class="btn-primary btn" *ngIf="!statusEdit" (click)="changeStatus()">Добавить заявку</button>
+      <br>
     </div>
-    <ul>
-      <li *ngFor="let task of tasks$ | async">{{task.name}}</li>
-    </ul>
+    <div class="col-lg-12" style="margin: 20px;" *ngIf="statusEdit">
+      <app-task-info></app-task-info>
+    </div>
   </div>
 </div>
-
+<div class="" style="display: flex; flex-wrap: wrap;">
+  <div *ngFor="let task of tasks$ | async" class="card text-white bg-info mb-3" style="max-width: 18rem;">
+    <div class="card-header">Расположение: {{task.name_loc}}</div>
+    <div class="card-body">
+      <h5 class="card-title">{{task.tittle}}</h5>
+      <p class="card-text">{{task.description}}</p>
+    </div>
+    <div class="card-body text-center">
+      <p *ngIf="task.performing !== null">Выполняет: {{task.performing.name}}</p>
+    </div>
+    <div class="card-footer" style="display: flex; flex-wrap: wrap;">
+      <div class="col-lg-6 col-sm-12 text-left">
+        <p style="font-size: 14px"><i class="fas fa-user"></i> {{task.creator.name}}</p>
+      </div>
+      <div class="col-lg-6 col-sm-12 text-left">
+        <p style="font-size: 14px"><i class="far fa-calendar-alt"></i> {{task.create_at}}</p>
+      </div>
+    </div>
+  </div>
+</div>

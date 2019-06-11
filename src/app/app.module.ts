@@ -13,6 +13,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { RequestSearchComponent } from './request-search/request-search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthComponent } from './auth/auth.component';
+import { TaskInfoComponent } from './task-info/task-info.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthComponent } from './auth/auth.component';
     DashboardComponent,
     RequestSearchComponent,
     AuthComponent,
+    TaskInfoComponent,
   ],
   imports: [
     BrowserModule,

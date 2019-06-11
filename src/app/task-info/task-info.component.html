@@ -1,0 +1,31 @@
+<div class="col-lg-6 offset-lg-3 col-sm-12" style="background-color: #cdcdcd; border-radius: 10px; border: 1px silver solid; margin-top: 10px; padding: 20px;">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Заголовок</span>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="tittle" placeholder="Заголовок обращения" aria-label="Заголовок обращения"
+           aria-describedby="basic-addon1">
+  </div>
+  <br>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Описание проблемы</span>
+    </div>
+    <select class="form-control" [(ngModel)]="location">
+      <option value="">Все</option>
+      <option *ngFor="let loc of locations" value="{{loc.location_id}}">{{loc.name_loc}}</option>
+    </select>
+  </div>
+  <br>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Расположение: </span>
+    </div>
+    <textarea class="form-control" [(ngModel)]="description" aria-label="With textarea"></textarea>
+  </div>
+  <div class="text-center">
+    <br>
+    <button class="btn btn-success" style="margin: 5px;" (click)="addTask();">Сохранить</button>
+    <button class="btn btn-success" style="margin: 5px;" (click)="closeEdit();">Отмена</button>
+  </div>
+</div>
