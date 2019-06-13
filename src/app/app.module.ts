@@ -9,11 +9,11 @@ import { RequestDetailComponent } from './request-detail/request-detail.componen
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule} from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { RequestSearchComponent } from './request-search/request-search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthComponent } from './auth/auth.component';
 import { TaskInfoComponent } from './task-info/task-info.component';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { TaskInfoComponent } from './task-info/task-info.component';
     HttpClientModule,
     NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

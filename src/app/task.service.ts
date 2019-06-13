@@ -45,8 +45,18 @@ export class TaskService {
     );
   }
 
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.taskUrl}/getUsers`).pipe(
+  addPerformer(idTask, idPerformer): Observable<any[]> {
+    const data = {
+      task: idTask,
+      performer: idPerformer
+    };
+    return this.http.post<any[]>(`${this.taskUrl}/addPerformer`, data, httpOptions).pipe(
+      catchError(this.handleError<any[]>('getLocations', []))
+    );
+  }
+
+  getUsers(role: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.taskUrl}/getUsers?role=${role}`).pipe(
       catchError(this.handleError<any[]>('getUsers', []))
     );
   }

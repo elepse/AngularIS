@@ -11,11 +11,13 @@ import {Location} from '@angular/common';
 export class AuthComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private location: Location) {
+    authService.checkAuth();
   }
 
   logIn(login: string, password: string): void {
     this.authService.logIn(login, password).subscribe(data => {
       if (data.status) {
+        this.authService.saveLogin(data);
         this.router.navigateByUrl('/requests');
       } else {
         alert('неверный пароль');

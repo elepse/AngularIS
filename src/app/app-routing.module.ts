@@ -6,7 +6,7 @@ import { RequestDetailComponent} from './request-detail/request-detail.component
 import {AuthComponent} from './auth/auth.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/auth', pathMatch: 'full'},
+  {path: '', redirectTo: '/requests', pathMatch: 'full'},
   {path: 'requests', component: RequeriesBoardComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'detail/:id', component: RequestDetailComponent},

@@ -1,4 +1,5 @@
-<div class="col-lg-6 offset-lg-3 col-sm-12" style="background-color: #cdcdcd; border-radius: 10px; border: 1px silver solid; margin-top: 10px; padding: 20px;">
+<div *ngIf="typeChange === 1" class="col-lg-6 offset-lg-3 col-sm-12" style="background-color: #cdcdcd; border-radius: 10px; border: 1px silver solid; margin-top: 10px; padding: 20px;">
+  <h3 class="text-center">Описание проблемы</h3>
   <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Заголовок</span>
@@ -26,6 +27,32 @@
   <div class="text-center">
     <br>
     <button class="btn btn-success" style="margin: 5px;" (click)="addTask();">Сохранить</button>
-    <button class="btn btn-success" style="margin: 5px;" (click)="closeEdit();">Отмена</button>
+    <button class="btn btn-secondary" style="margin: 5px;" (click)="closeEdit();">Отмена</button>
+  </div>
+</div>
+
+<div class="col-lg-12" *ngIf="typeChange === 2">
+  <div class="offset-lg-4 col-lg-4" style="border: silver 1px solid; padding: 15px; border-radius: 5px;">
+<!--    <h4>Редактирование</h4>-->
+<!--    <hr>-->
+<!--    <label for="editTitle">Заголовок</label>-->
+<!--    <input id="editTitle" class="form-control" style="font-size: 18px;" value="{{task.tittle | uppercase}}">-->
+<!--    <br>-->
+<!--    <label for="editDescription">Примечание</label>-->
+<!--    <input id="editDescription" class="form-control" value="{{task.description}}">-->
+<!--    <label for="editLoc">Расположение</label>-->
+<!--    <select class="form-control" id="editLoc" [value]="task.location">-->
+<!--      <option *ngFor=" let loc of locations" value="{{loc.location_id}}">loc.loc_name</option>-->
+<!--    </select>-->
+    <label for="editPerforming">Выполняющий для: <span style="font-size: 16px;" class="font-weight-bold">{{task.tittle}} ({{task.name_loc}})</span></label>
+    <select #editPerforming id="editPerforming" class="form-control">
+      <option value="null">Выберите</option>
+      <option *ngFor=" let user of performers" value="{{user.user_id}}">{{user.name}} ({{user.login}})</option>
+    </select>
+    <br>
+    <div class="text-center">
+      <button class="btn btn-success" (click)="savePerforming(task.task_id, editPerforming.value)" style="margin-left: -10px; margin-right: 10px;">Назначить</button>
+      <button class="btn btn-danger" (click)="closeEdit();">Отмена</button>
+    </div>
   </div>
 </div>
