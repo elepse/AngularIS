@@ -9,6 +9,7 @@ class Task extends Model
     protected $table = 'tasks';
     protected $guarded = [''];
     public $timestamps = false;
+    protected $primaryKey = 'task_id';
 
     public function creator() {
         return $this->belongsTo(User::class, 'creator', 'user_id');

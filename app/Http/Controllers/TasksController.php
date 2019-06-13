@@ -59,9 +59,10 @@ class TasksController extends Controller
         return $locations;
     }
 
-    public function users()
+    public function users(Request $request)
     {
-        $users = User::all();
+        $role = $request->get('role', null);
+        $users = User::query()->where('role', '=', $role)->get();
         return $users;
     }
 
@@ -79,6 +80,14 @@ class TasksController extends Controller
             'status' => 1,
             'theme' => 1
         ])->save();
+        return ['status' => true];
+    }
+
+    public function addPerformer(Request $request) {
+        $task = $request->get('task');
+        $performer = $request->get('performer');
+
+        Task::query()->find($task)->update(['performing' => $performer]);
         return ['status' => true];
     }
 

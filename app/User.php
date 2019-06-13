@@ -22,5 +22,7 @@ class User extends Authenticatable
 
     protected $primaryKey = 'user_id';
 
+    protected $guarded = [''];
+
     protected $hidden = ['password', 'token'];
 }

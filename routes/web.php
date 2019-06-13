@@ -18,11 +18,13 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api'], function (){
 
     Route::post('login','AuthController@login')->name('login');
+    Route::post('checkAuth', 'AuthController@checkAuth');
 
     Route::group(['prefix' => 'tasks'], function (){
         Route::get('search', 'TasksController@search');
         Route::get('getUsers', 'TasksController@users');
         Route::get('getLocations', 'TasksController@locations');
         Route::post('addTask', 'TasksController@addTask');
+        Route::post('addPerformer', 'TasksController@addPerformer');
     });
 });
